@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import PropTypes from 'prop-types';
 import {
   Form,
   Icon,
@@ -11,6 +12,10 @@ import {
 const Item = Form.Item;
 
 class LoginForm extends Component{
+  //进行约束
+  static propTypes = {
+    login:PropTypes.func.isRequired
+  }
   //表单验证的规则
   callback=(rule,value,callback)=>{
     if(!value){
@@ -31,11 +36,14 @@ class LoginForm extends Component{
     e.preventDefault();
     const {validateFields,resetFields} =  this.props.form;
 
-    validateFields((error,values)=>{
+    validateFields(async(error,values)=>{
       // console.log(error,values);
       if(!error){
         //验证成功
         console.log('收集的数据',values)
+        const {username,password} = values;
+        //调用父组件的login方法
+        this.props.login(username,password)
       }else {
         //验证失败 ---重置密码
         resetFields(['password'])
@@ -47,7 +55,6 @@ class LoginForm extends Component{
         message.error(errMsg)
 
       }
-
     })
   }
   render(){
@@ -58,7 +65,7 @@ class LoginForm extends Component{
       <Form className="login-form-container" onSubmit={this.handleSubmit}>
         <Item>
           {
-            getFieldDecorator('usename',{
+            getFieldDecorator('username',{
               rules:[
                 {required: true, message: '请输入用户名'},
                 {min: 4, message: '用户名必须大于等于4位'},
