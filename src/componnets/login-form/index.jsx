@@ -36,7 +36,7 @@ class LoginForm extends Component{
     e.preventDefault();
     const {validateFields,resetFields} =  this.props.form;
 
-    validateFields(async(error,values)=>{
+    validateFields((error,values)=>{
       // console.log(error,values);
       if(!error){
         //验证成功
@@ -59,13 +59,14 @@ class LoginForm extends Component{
   }
   render(){
     //表单验证
-    const {getFieldDecorator,getFieldValue} = this.props.form;
+    const {getFieldDecorator} = this.props.form;
     // console.log(getFieldValue)
     return(
       <Form className="login-form-container" onSubmit={this.handleSubmit}>
         <Item>
           {
-            getFieldDecorator('username',{
+            getFieldDecorator(
+              'username',{
               rules:[
                 {required: true, message: '请输入用户名'},
                 {min: 4, message: '用户名必须大于等于4位'},

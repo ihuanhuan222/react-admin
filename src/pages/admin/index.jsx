@@ -26,7 +26,7 @@ export default class Admin extends Component{
               <Route path='/home' component={Home}/>
               <Route path='/category' component={Category}/>
               <Route path='/product' component={Product}/>
-              <Redirect path='/home'/>
+              <Redirect to='/home'/>
             </Switch>
           </div>
           <Footer/>
