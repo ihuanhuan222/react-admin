@@ -1,4 +1,40 @@
 .header{
-  height: 80px;
-  background-color: pink;
+  //background-color: pink;
+  .header-top{
+    padding: 20px;
+    text-align: right;
+    border-bottom: 1px solid #1DA57A;
+    a{
+      margin-left: 50px;
+    }
+  }
+  .header-bottom{
+    display: flex;
+    align-items: center;
+    .header-bottom-left{
+      text-align: center;
+      padding: 5px 0;
+      font-size: 18px;
+      &::after{
+        content:'';
+        position: absolute;
+        left: 50%;
+        bottom: -15px;
+        transform: translateX(-50%);
+        border-top:15px solid #ffffff;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+
+      }
+    }
+    .header-bottom-right{
+      text-align: right;
+      padding: 5px 20px 5px 5px;
+      img{
+        width: 25px;
+        margin: 0 10px;
+
+      }
+    }
+  }
 }

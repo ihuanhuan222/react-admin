@@ -8,6 +8,8 @@ import './index.less';
 //引入其他组件
 import LoginForm from '../../componnets/login-form';
 import {reqLogin} from '../../api';
+import {setItem} from '../../utils/storageUtils';
+import MemoryUtils from '../../utils/memoryUtils';
 
 export default class Login extends Component{
   state ={
@@ -19,7 +21,9 @@ export default class Login extends Component{
     const result = await reqLogin(username,password)
     console.log(result);
     if(result.status === 0){
-      //登录成功 - 保存页面信息--跳转到admin
+      //登录成功 - 保存页面用户信息--并把用户信息保存在内存中--跳转到admin
+      setItem(result.data);
+      MemoryUtils.user = result.data
       this.props.history.replace('/')
 
     }else if(result.status ===1){

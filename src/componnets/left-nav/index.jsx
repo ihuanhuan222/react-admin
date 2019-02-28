@@ -8,6 +8,7 @@ import menuList from '../../config/menuConfig';
 
 const Item = Menu.Item;
 const SubMenu = Menu.SubMenu;
+
 class LeftNav extends Component{
 
   //渲染前得到菜单项
@@ -20,9 +21,10 @@ class LeftNav extends Component{
     return menu.map(item =>{
       //判断是否有子菜单
       if(item.children){
-
+         //得到当前路径
           const {pathname} =this.props.location;
-          const result = item.children.find(item=> item.key ===pathname )
+        //找是否有与children中匹配的pathname
+          const result = item.children.find(item=> item.key === pathname);
           if(result){
             this.openKey = item.key;
           }
