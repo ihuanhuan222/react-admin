@@ -24,6 +24,7 @@ export const reqWeather = city =>{
       (err,data)=>{
         if(!err){
           //请求成功
+          // console.log(data.results[0].weather_data[0])
           resolve(data.results[0].weather_data[0])
         }else {
           //请求失败
@@ -34,3 +35,12 @@ export const reqWeather = city =>{
     )
   })
 }
+
+//请求列表数据函数
+export const reqCategories = parentId => ajax(prefix + '/manage/category/list',{parentId})
+
+//请求添加分类数据函数
+export const reqAddCategory = (parentId,categoryName) => ajax(prefix +'/manage/category/add',{parentId,categoryName},'POST')
+
+//请求修改分类数据函数
+export const reqUpdateCategoryName = (categoryId,categoryName) => ajax(prefix + '/manage/category/update',{categoryId,categoryName},'POST')

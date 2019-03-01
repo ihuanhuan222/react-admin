@@ -18,7 +18,7 @@ import './index.less';
    }
 
    componentDidMount(){
-     // this.Updata();
+     this.Updata();
      this.getWeather();
    }
 
@@ -33,7 +33,7 @@ import './index.less';
 
    //天气信息函数
    getWeather = ()=>{
-     reqWeather()
+     reqWeather('北京')
        .then(res =>{
          this.setState({
            dayPictureUrl:res.dayPictureUrl,

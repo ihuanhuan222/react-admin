@@ -1,9 +1,8 @@
 //后台管理的主路由组件
 import React,{Component} from 'react';
-import {Row,Col} from 'antd';
+import {Layout} from 'antd';
 import {Route,Switch,Redirect} from 'react-router-dom'
 
-import './index.less';
 //引入其他组件
 import LeftNav from '../../componnets/left-nav';
 import Header from '../../componnets/header';
@@ -18,6 +17,8 @@ import Line from '../charts/line';
 import Bar from  '../charts/bar';
 import MemoryUtils from '../../utils/memoryUtils';
 
+const {Content,Sider} = Layout;
+
 export default class Admin extends Component{
   render(){
     //进行优化，把数据保存到内存中
@@ -31,14 +32,13 @@ export default class Admin extends Component{
     }
 
     return(
-      <Row className='admin'>
-        <Col span={4}>
+      <Layout  style={{ minHeight:'100vh'}}>
+        <Sider>
           <LeftNav />
-        </Col>
-        <Col span={20}>
+        </Sider>
+        <Layout>
           <Header/>
-          <div className="admin-main">
-            {/*<span>欢迎使用硅谷后台管理系统</span>*/}
+          <Content style={{minHeight:18}}>
             <Switch>
               <Route path='/home' component={Home}/>
               <Route path='/category' component={Category}/>
@@ -50,10 +50,10 @@ export default class Admin extends Component{
               <Route path='/charts/bar' component={Bar}/>
               <Redirect to='/home'/>
             </Switch>
-          </div>
+          </Content>
           <Footer/>
-        </Col>
-      </Row>
+        </Layout>
+      </Layout>
     )
   }
 }
