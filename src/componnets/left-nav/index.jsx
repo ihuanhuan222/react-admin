@@ -23,8 +23,8 @@ class LeftNav extends Component{
       if(item.children){
          //得到当前路径
           const {pathname} =this.props.location;
-        //找是否有与children中匹配的pathname
-          const result = item.children.find(item=> item.key === pathname);
+        //找是否有与children中匹配的pathname  -- indexOf：刷新时-自动展开左边列表，有带product的都能打开
+          const result = item.children.find(item=>pathname.indexOf(item.key) ===0 );
           if(result){
             this.openKey = item.key;
           }
@@ -47,7 +47,12 @@ class LeftNav extends Component{
   }
   render(){
     //获取路由路径
-    const {pathname} =this.props.location;
+    let {pathname} =this.props.location;
+
+    //左边菜单自动选中
+    if(/^\/product/.test(pathname)){
+      pathname ='/product'
+    }
     return(
       <div className="left-nav">
         <header>

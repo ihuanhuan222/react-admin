@@ -9,7 +9,7 @@ import Header from '../../componnets/header';
 import Footer from '../../componnets/footer';
 import Home from '../home';
 import Category from '../category';
-import Product from '../product';
+import Product from '../product/product';
 import Role from '../role';
 import User from '../user';
 import Pie from '../charts/pie';
